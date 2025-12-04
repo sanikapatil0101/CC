@@ -22,7 +22,7 @@
 
 
 # a=[]
-x=1
+# x=1
 # while(1):
 #     if(x<6):
 #         a.append(x)
@@ -30,8 +30,6 @@ x=1
     
 #     else:
 #         break
-    
-
 # print(a)
 
 # while(x<=10):
