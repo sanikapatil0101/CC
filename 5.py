@@ -454,7 +454,7 @@ class linkedlist:
         print("middle node data is: ")
         return slow.data
     
-    def reverseLink(start,s):             #----------------------> revrse link
+    def reverseLink(self,s):             #----------------------> revrse link
         prev=None
         curr=s
         while curr is not None:
