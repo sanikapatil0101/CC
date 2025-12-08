@@ -362,78 +362,78 @@ class stack:
     # def printstack(self):
     #     print("stack is:",self.stack)
 
-    def isempty(self):
-        return self.top is None
+#     def isempty(self):
+#         return self.top is None
 
-    def push(self, val):
-        temp = node(val)
-        temp.next = self.top
-        self.top = temp
+#     def push(self, val):
+#         temp = node(val)
+#         temp.next = self.top
+#         self.top = temp
 
-    def pop(self):
-        if self.isempty():
-            print("Stack Underflow — cannot pop")
-            return None
+#     def pop(self):
+#         if self.isempty():
+#             print("Stack Underflow — cannot pop")
+#             return None
         
-        temp = self.top
-        self.top = self.top.next
-        return temp.data
+#         temp = self.top
+#         self.top = self.top.next
+#         return temp.data
 
-    def peek(self):
-        if self.isempty():
-            print("Stack is empty — no top element")
-            return None
-        return self.top.data
+#     def peek(self):
+#         if self.isempty():
+#             print("Stack is empty — no top element")
+#             return None
+#         return self.top.data
 
-    def printstack(self):
-        if self.isempty():
-            print("Stack is empty")
-            return
-        temp = self.top
-        print("Stack (TOP → BOTTOM): ", end="")
-        while temp:
-            print(temp.data, end=" -> ")
-            temp = temp.next
-        print("None")    
+#     def printstack(self):
+#         if self.isempty():
+#             print("Stack is empty")
+#             return
+#         temp = self.top
+#         print("Stack (TOP → BOTTOM): ", end="")
+#         while temp:
+#             print(temp.data, end=" -> ")
+#             temp = temp.next
+#         print("None")    
 
-from collections import deque
+# from collections import deque
 
-class Stack:
-    def __init__(self):
-        self.st = deque()
+# class Stack:
+#     def __init__(self):
+#         self.st = deque()
 
-    def push(self, x):
-        self.st.append(x)      
+#     def push(self, x):
+#         self.st.append(x)      
 
-    def pop(self):
-        if self.isEmpty():
-            print("Stack empty")
-            return None
-        return self.st.pop()   
+#     def pop(self):
+#         if self.isEmpty():
+#             print("Stack empty")
+#             return None
+#         return self.st.pop()   
 
-    def peek(self):
-        if self.isEmpty():
-            return None
-        return self.st[-1]
+#     def peek(self):
+#         if self.isEmpty():
+#             return None
+#         return self.st[-1]
 
-    def isEmpty(self):
-        return len(self.st) == 0
+#     def isEmpty(self):
+#         return len(self.st) == 0
 
-    def display(self):
-        print(list(self.st))
+#     def display(self):
+#         print(list(self.st))
 
 
 
-s=stack()
-s.push(10)
-s.push(20)
-s.push(30)
-s.push(40)
-s.printstack()
-print(s.pop())
-s.printstack()
-print(s.peek())
-s.printstack()
+# s=stack()
+# s.push(10)
+# s.push(20)
+# s.push(30)
+# s.push(40)
+# s.printstack()
+# print(s.pop())
+# s.printstack()
+# print(s.peek())
+# s.printstack()
 
     
 
@@ -443,98 +443,127 @@ s.printstack()
 #----------------------------------------------------->queue 
 
 class QueueList:
-    def __init__(self):
-        self.q = []
+    def __init__(self,size):
+        self.q = [None]*size
+        self.front = -1
+        self.rear = -1
+        self.size=size
 
     def enqueue(self, x):
-        self.q.append(x)         
+        if self.rear==self.size-1:
+            print("queue is full")
+            return 
+        if self.front==-1:
+           self.front=0
+        self.rear+=1
+        self.q[self.rear]=x        
 
     def dequeue(self):
         if self.isEmpty():
             print("Queue empty")
             return None
-        return self.q.pop(0)     
+        print("deleted element is ",self.q[self.front])
+        self.q[self.front]=None
+        self.front+=1
+        
+        if self.front > self.rear:
+            self.front = self.rear = -1
 
     def isEmpty(self):
-        return len(self.q) == 0
+        return self.front==-1
 
-    def peek(self):
-        if self.isEmpty():
-            return None
-        return self.q[0]
 
     def display(self):
-        print(self.q)
+        if self.front==-1 or self.front > self.rear:
+            print("empty Queue..")
+        else:
+            print(self.q)
 
 
 
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
 
-class QueueLinkedList:
-    def __init__(self):
-        self.front = None
-        self.rear = None
+# class QueueLinkedList:
+#     def __init__(self):
+#         self.front = None
+#         self.rear = None
 
-    def enqueue(self, x):
-        new = Node(x)
-        if self.rear is None:           # first element
-            self.front = self.rear = new
-            return
-        self.rear.next = new            # add at end
-        self.rear = new
+#     def enqueue(self, x):
+#         new = Node(x)
+#         if self.rear is None:           # first element
+#             self.front = self.rear = new
+#             return
+#         self.rear.next = new            # add at end
+#         self.rear = new
 
-    def dequeue(self):
-        if self.front is None:
-            print("Queue empty")
-            return None
-        val = self.front.data
-        self.front = self.front.next    # remove from front
-        if self.front is None:
-            self.rear = None            # queue becomes empty
-        return val
+#     def dequeue(self):
+#         if self.front==-1:
+#             print("Queue empty")
+#             return None
+#         val = self.front.data
+#         self.front = self.front.next    # remove from front
+#         if self.front is None:
+#             self.rear = None            # queue becomes empty
+#         return val
 
-    def isEmpty(self):
-        return self.front is None
+#     def isEmpty(self):
+#         return self.front is None
 
-    def peek(self):
-        return None if self.front is None else self.front.data
-
-    def display(self):
-        temp = self.front
-        while temp:
-            print(temp.data, end=" ")
-            temp = temp.next
-        print()
+#     def display(self):
+#         temp = self.front
+#         while temp:
+#             print(temp.data, end=" ")
+#             temp = temp.next
+#         print()
 
 
 
 
 
-from collections import deque
+# from collections import deque
 
-class QueueDeque:
-    def __init__(self):
-        self.q = deque()
+# class QueueDeque:
+#     def __init__(self):
+#         self.q = deque()
 
-    def enqueue(self, x):
-        self.q.append(x)    
+#     def enqueue(self, x):
+#         self.q.append(x)    
 
-    def dequeue(self):
-        if not self.q:
-            print("Queue empty")
-            return None
-        return self.q.popleft()  
+#     def dequeue(self):
+#         if not self.q:
+#             print("Queue empty")
+#             return None
+#         return self.q.popleft()  
 
-    def peek(self):
-        return None if not self.q else self.q[0]
+#     def peek(self):
+#         return None if not self.q else self.q[0]
 
-    def isEmpty(self):
-        return len(self.q) == 0
+#     def isEmpty(self):
+#         return len(self.q) == 0
 
-    def display(self):
-        print(list(self.q))
+#     def display(self):
+#         print(list(self.q))
 
+
+
+
+q=QueueList(5)
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+q.enqueue(40)
+q.enqueue(50)
+# q.enqueue(60)
+q.display()
+q.dequeue()
+q.dequeue()
+q.dequeue()
+q.dequeue()
+q.dequeue()
+q.dequeue()
+q.display()
+# q.enqueue(400)
