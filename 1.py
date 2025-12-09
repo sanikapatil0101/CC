@@ -8,7 +8,6 @@
 # print("name ",name , "id ", id)
 
 # x="sanika"
-
 # print(x.center(len(x)+8,"t")+"jjj")
 
 # print(x.capitalize())
